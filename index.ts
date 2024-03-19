@@ -92,10 +92,32 @@ router.get(
   async (req: Request, res: Response<Reservation[] | {}>) => {
     try {
       const userId = req.params.userId;
-      const reservations = await getReservations(userId);
-      const resp = reservations.map((reservation) => reservation.reservation);
-      return res.json(resp);
+      // TODO harddcode dummy data for test
+      console.log("userId::::",userId);
+      // const reservations = await getReservations(userId);
+      // const resp = reservations.map((reservation) => reservation.reservation);
+      return res.json([{
+        'id':1,
+        'room':{
+          'number':1,
+          'type':{
+            'id':1,
+            'name':'andvhbsfa',
+            'guestCapacity':2,
+            'price':3
+          }
+        },
+        'checkinDate':'2024/03/02',
+        'checkoutDate':'2024/03/03',
+        'user':{
+          'id':'afmbjaf',
+          'name':'afbjf',
+          'email':'afajf@gmail.com',
+          'mobileNumber':'0717725158'
+        }
+      }]);
     } catch (error) {
+      console.log("error::::",error);
       res.status(500).json({ error: "Internal server error" });
     }
   }
